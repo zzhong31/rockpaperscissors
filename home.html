@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+    <script>
+        function getRandomArbitrary(min, max) {
+            return Math.floor(Math.random() * (max - min) + min)
+        }
+        function computerPlay() {
+            let choices = ["Rock", "Paper", "Scissors"]
+            let selection = getRandomArbitrary(0, 3)
+            return choices[selection]
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let result
+            if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+                result = -1
+            }
+            else {
+                if (playerSelection.toLowerCase() == 'rock') {
+                    if (computerSelection.toLowerCase() == 'paper') {
+                        result = 0
+                    }
+                    else if (computerSelection.toLowerCase() == 'scissors') {
+                        result = 1
+                    }
+                }
+                else if (playerSelection.toLowerCase() == "scissors") {
+                    if (computerSelection.toLowerCase() == 'rock') {
+                        result = 0
+                    }
+                    else if (computerSelection.toLowerCase() == 'paper') {
+                        result = 1
+                    }
+                }
+                else if (playerSelection.toLowerCase() == "paper") {
+                    if (computerSelection.toLowerCase() == 'scissors') {
+                        result = 0
+                    }
+                    else if (computerSelection.toLowerCase() == 'rock') {
+                        result = 1
+                    }
+                }
+            }
+            console.log('Player: ' + playerSelection.toLowerCase() + ', Computer: ' + computerSelection.toLowerCase())
+            if (result == 1) {
+                console.log('You Have Won')
+            }
+            else if (result == 0) {
+                console.log('You Have Lost')
+            }
+            else {
+                console.log('You Have Tied')
+            }
+            return result
+        }
+
+        function game(){
+            let playCounter = 0
+            let wins = 0
+            while (playCounter < 5){
+                playerChoice = window.prompt("Rock, Paper, or Scissors")
+                result = playRound(playerChoice, computerPlay())
+                if (result == 1){
+                    wins = wins + result
+                }
+                playCounter += 1
+                console.log(playCounter)
+            }
+            console.log('Final Result: '+wins+' Wins')
+        }
+        
+        game()
+    </script>
+</body>
+</html>
